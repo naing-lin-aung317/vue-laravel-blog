@@ -1,20 +1,28 @@
 <template>
-    <h1  :key="blog.id"> {{ blog.title }}</h1>
-    <p  :key="blog.id"> {{ blog.description }}</p>
-    <Link :href="`/blogs/${blog.id}/edit`">Edit</Link>
+    <div>
+        <h1 :key="blog.id"> {{ blog.title }}</h1>
+        <p :key="blog.id"> {{ blog.description }}</p>
+        <div class="flex items-center gap-3">
+            <Link :href="`/blogs/${blog.id}/edit`">Edit</Link>
+            <button type="button" @click="deleteBlog">Delete</button>
+        </div>
+    </div>
 </template>
 
 <script>
 import { Link } from '@inertiajs/vue3';
 
-export default{
+export default {
     components: { Link },
-    props:{
-        blog:{
+    props: {
+        blog: {
             type: Object,
-        
-        }
-    }
-}
-
+        },
+    },
+    methods: {
+        deleteBlog() {
+            this.$inertia.post(`/blogs/${this.blog.id}/delete`);
+        },
+    },
+};
 </script>
