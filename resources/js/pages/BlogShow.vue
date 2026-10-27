@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 :key="blog.id"> {{ blog.title }}</h1>
+        <h1 :key="blog.id"> {{ blog.title }}-<Link class="underline" :href="`/users/${blog.user?.id}`">{{ blog.user?.name }}</Link></h1>
         <p :key="blog.id"> {{ blog.description }}</p>
         <div class="flex items-center gap-3">
             <Link :href="`/blogs/${blog.id}/edit`">Edit</Link>
